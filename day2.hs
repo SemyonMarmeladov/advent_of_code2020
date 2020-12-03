@@ -4,7 +4,7 @@ test :: [String]
 test = ["9-11", "p:", "pppppppppppppplx"]
 
 test1 :: [[String]]
-test1 = ["3-10", "p:", "ppppp"] : []
+test1 = ["3-4", "p:", "ppipp"] : []
 
 getMinMax' :: String -> String -> (String, String)
 getMinMax' (x:xs) mmin 
@@ -22,9 +22,10 @@ getMax :: String -> Int
 getMax x = (snd (minMax x))
  
 filterChars :: Int -> Int -> Char ->  String -> Bool
-filterChars max min l s = 
-  let st = filter (\x -> x == l) s in
-    ((length st) <= max && (length st) >= min)
+filterChars max min l s = if ((max - 1) > (length s)) then False
+                          else if ((s !! (max - 1)) == l && (s !! (min - 1)) /= l) ||
+                                  ((s !! (max - 1)) /= l && (s !! (min - 1)) == l) then True
+                          else False
 
 sol' :: [[String]] -> [[String]]
 sol' x = filter (\x -> filterChars (getMax (x !! 0)) (getMin (x !! 0))
@@ -34,5 +35,5 @@ sol xs = length $ sol' xs
 
 main :: IO ()
 main = do 
-  xs <- lines <$> readFile "./data/day2.txt" 
-  print $ (sol' (map words xs))
+  xs <- lines <$> readFile "./data/day02.txt" 
+  print $ (sol (map words xs))
