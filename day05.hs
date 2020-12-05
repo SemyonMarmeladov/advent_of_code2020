@@ -24,12 +24,12 @@ cnc = sort . map (\x -> (solve (take 7 x) [0..127]) * 8 +
            (solve (drop 7 x) [0..7])) 
 
 spotFinder :: [Int] -> Int
-spotFinder [] = 0
 spotFinder (x:y:xs)  
-  | (x + 1) /= y = (x + 1)
-  | otherwise = (spotFinder xs)
+  | (x + 2) == y = (x + 1)
+  | otherwise = (spotFinder (y:xs))
+spotFinder [] = 0
 
 main :: IO ()
 main = do 
   xs <- lines <$> readFile "./data/day05.txt"
-  print $ (cnc xs)
+  print $ (spotFinder(cnc xs))
