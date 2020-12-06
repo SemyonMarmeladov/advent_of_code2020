@@ -28,7 +28,7 @@ spotFinder (x:y:xs)
   | (x + 2) == y = (x + 1)
   | otherwise = (spotFinder (y:xs))
 spotFinder [] = 0
-
+-- a comment
 main :: IO ()
 main = do 
   xs <- lines <$> readFile "./data/day05.txt"
