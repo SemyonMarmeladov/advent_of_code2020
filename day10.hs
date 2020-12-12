@@ -1,12 +1,10 @@
--- |
 
 
-check :: [Int] -> [Int] -> Int -> Maybe
-check [] =
-check (x:xs) =
-
+part1 :: [Int] -> (Int, Int, Int) -> Int
+part xs ts =
 
 main :: IO ()
-main = do
-  xs <- lines . readFile "./data/day10.txt"
-  print xs
+main =
+  do
+    xs <- fpa (read::String ->Int) <$> lines <$> readFile "./data/day10"
+    xs <- part1 xs (0,0,0)
